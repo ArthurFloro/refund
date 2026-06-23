@@ -32,5 +32,14 @@ form.onsubmit = (e) => {
         created_at: new Date()
     }
 
-    console.log(newExpense)
+    expenseAdd(newExpense)
+}
+
+function expenseAdd(newExpense) {
+    try {
+        
+    } catch (error) {
+        alert("Ocorreu um erro ao adicionar a despesa. Por favor, tente novamente.")
+        console.log(error)
+    }
 }
