@@ -37,7 +37,7 @@ form.onsubmit = (e) => {
 
 function expenseAdd(newExpense) {
     try {
-        
+        const expenseItem = document.createElement("li")
     } catch (error) {
         alert("Ocorreu um erro ao adicionar a despesa. Por favor, tente novamente.")
         console.log(error)
