@@ -5,6 +5,7 @@ const category = document.getElementById("category")
 
 const expenseList = document.querySelector("ul")
 const expensesQuantity = document.querySelector("aside header p span")
+const expensesTotal = document.querySelector("aside header h2")
 
 amount.oninput = () => {
     let value = amount.value.replace(/\D/g, "")
@@ -89,7 +90,19 @@ function updateTotals() {
 
         for(let item = 0; item < items.length; item++) {
             const itemAmount = items[item].querySelector(".expense-amount")
+            
+            let value = itemAmount.textContent.replace(/[^\d]/g, "").replace(",", ".")
+
+            value = parseFloat(value)
+
+            if (isNaN(value)) {
+               return alert("Não foi possível calcular o total. O valor não parece ser um número") 
+            }
+
+            total += Number(value)
         }
+
+        expensesTotal.textContent = formatCurrency(total)
 
     } catch (error) {
         console.log(error)
