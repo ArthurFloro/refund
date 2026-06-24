@@ -115,3 +115,9 @@ function updateTotals() {
         alert("Ocorreu um erro ao atualizar os totais. Por favor, tente novamente.")
     }
 }
+
+expenseList.addEventListener("click", (event) => {
+    if(event.target.classList.contains("remove-icon")) {
+        console.log(event)
+    }
+})
