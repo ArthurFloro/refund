@@ -12,10 +12,10 @@ amount.oninput = () => {
 
     value = Number(value) / 100
 
-    amount.value = formatCurrency(value)
+    amount.value = formatCurrencyBRL(value)
 }
 
-function formatCurrency(value) {
+function formatCurrencyBRL(value) {
     value = value.toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL'
@@ -91,7 +91,7 @@ function updateTotals() {
         for(let item = 0; item < items.length; item++) {
             const itemAmount = items[item].querySelector(".expense-amount")
             
-            let value = itemAmount.textContent.replace(/[^\d]/g, "").replace(",", ".")
+            let value = itemAmount.textContent.replace(/[^\d,]/g, "").replace(",", ".")
 
             value = parseFloat(value)
 
@@ -102,8 +102,14 @@ function updateTotals() {
             total += Number(value)
         }
 
-        expensesTotal.textContent = formatCurrency(total)
+        const symbolBRL = document.createElement("small")
+        symbolBRL.textContent = "R$"
 
+        total = formatCurrencyBRL(total).toUpperCase().replace("R$", "")
+
+        expensesTotal.innerHTML = ""
+
+        expensesTotal.append(symbolBRL, total)
     } catch (error) {
         console.log(error)
         alert("Ocorreu um erro ao atualizar os totais. Por favor, tente novamente.")
